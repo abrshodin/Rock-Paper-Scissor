@@ -36,7 +36,7 @@ function playRound(playerChoice, computerChoice) {
             return "It's Tie!";
     }
     else if(playerChoice == "ROCK") {
-        if(computerChoice == "Scissor") {
+        if(computerChoice == "SCISSOR") {
             userCounter++;
             return "You Win! Rock beats Scissor.";
         }
@@ -47,4 +47,31 @@ function playRound(playerChoice, computerChoice) {
         else if(computerChoice == "ROCK")
             return "It's Tie!";
     }
+}
+
+
+// function to play five round of rock-paper-scissor game.
+function playGame() {
+    userCounter = 0;
+    computerCounter = 0;
+
+    for(let i = 1; i <= 5; i++) {
+
+            // obtain user choice
+        let userChoice = (prompt("Enter your choice.(ROCK, PAPER, SCISSOR)"));
+
+        userChoice = userChoice.toUpperCase();
+
+        // obtain computer choice
+        let computerChoice = getComputerChoice();
+
+        console.log(playRound(userChoice, computerChoice));
+    }
+
+    if(userCounter > computerCounter)
+        return ("Total Result: You win! " + userCounter + " to " + computerCounter) ;
+    else if(userCounter < computerCounter)
+        return ("Total Result: You Lose! " + userCounter + " to " + computerCounter);
+    else 
+        return ("Total Result: It's a Draw");
 }
