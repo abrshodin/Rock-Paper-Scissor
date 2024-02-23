@@ -1,3 +1,5 @@
+// Simple javascript program to play Rock-Paper-Scissor in the console with the computer.
+
 // get random computer choice
 function getComputerChoice() {
     let items = ["ROCK", "PAPER", "SCISSOR"];
@@ -5,12 +7,14 @@ function getComputerChoice() {
     return items[Math.floor(Math.random() * items.length)];
 }
 
+// variable to store the match result
 let userCounter = 0;
 let computerCounter = 0;
 
 // enable to play one round of rock-paper-scissor game.
 function playRound(playerChoice, computerChoice) {
     
+    // if...else statement to determine the game result
     if(playerChoice == "SCISSOR") {
         if(computerChoice == "PAPER") {
             userCounter++;
@@ -52,6 +56,8 @@ function playRound(playerChoice, computerChoice) {
 
 // function to play five round of rock-paper-scissor game.
 function playGame() {
+
+    // reset the values for each new game
     userCounter = 0;
     computerCounter = 0;
 
