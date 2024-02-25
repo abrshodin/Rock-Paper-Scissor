@@ -11,9 +11,9 @@ function getComputerChoice() {
 let userCounter = 0;
 let computerCounter = 0;
 
-// enable to play one round of rock-paper-scissor game.
-function playRound(playerChoice, computerChoice) {
-    
+// evaluate the choices and determine the winner based on the game rules
+function playGame(playerChoice, computerChoice) {
+
     // if...else statement to determine the game result
     if(playerChoice == "SCISSOR") {
         if(computerChoice == "PAPER") {
@@ -53,31 +53,81 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
+// to play one round of game
+function playRound(event) {
+    
+    // obtain user choice
+    let userChoice = event.target.name;
+    
+    // obtain computer choice
+     let computerChoice = getComputerChoice();
 
-// function to play five round of rock-paper-scissor game.
-function playGame() {
+     // play the game
+     alert(playGame(userChoice, computerChoice));
 
-    // reset the values for each new game
-    userCounter = 0;
-    computerCounter = 0;
+     // display the result
+     if(userCounter <= 5 && computerCounter <= 5)
+        div.innerHTML = `<p>User Score: ${userCounter}<br> Computer Score: ${computerCounter}</p>`;
 
-    for(let i = 1; i <= 5; i++) {
-
-            // obtain user choice
-        let userChoice = (prompt("Enter your choice.(ROCK, PAPER, SCISSOR)"));
-
-        userChoice = userChoice.toUpperCase();
-
-        // obtain computer choice
-        let computerChoice = getComputerChoice();
-
-        console.log(playRound(userChoice, computerChoice));
+     if(userCounter == 5 && computerCounter < 5) {
+         div.insertAdjacentText("beforeend", `Total Result: You've won ${userCounter} to ${computerCounter}`);
+         userCounter = 0;
+         computerCounter = 0;
     }
 
-    if(userCounter > computerCounter)
-        return ("Total Result: You win! " + userCounter + " to " + computerCounter) ;
-    else if(userCounter < computerCounter)
-        return ("Total Result: You Lose! " + userCounter + " to " + computerCounter);
-    else 
-        return ("Total Result: It's a Draw");
+     if(computerCounter == 5 && userCounter < 5) {
+        div.insertAdjacentText("beforeend", `Total Result: You've Lost ${userCounter} to ${computerCounter}`);
+        userCounter = 0;
+        computerCounter = 0;
+    }
+
+    if(userCounter == 5 && computerCounter == 5){
+        div.insertAdjacentText('afterend', "Total Result: Draw");
+        userCounter = 0;
+        computerCounter = 0;
+    }
 }
+
+// targeting the button elements
+const buttons = document.querySelectorAll("button");
+
+// targeting the div container
+const div = document.querySelector("#result-container");
+
+// converting the NodeList into an array
+Array.from(buttons);
+
+// to add a listener for very button
+function listenerForButtons(button) {
+    button.addEventListener("click", playRound);
+}
+
+// adding listener to every button
+buttons.forEach(listenerForButtons);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
